@@ -1,0 +1,1 @@
+Exercício de lógica feito com base em alguns conhecimentos adquiridos nos estudos da Trilha Iniciante em Programação T3 - ONE, na Alura.

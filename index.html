@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Censurador de texto</title>
+
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<input type ="text" id="txtInicial" placeholder="Texto para censurar" size="50" maxlength="60">
+
+	<section class="palavra-proibida">
+		<input type ="text" id="addNovaPlvr" placeholder="Nova palavra proibida">
+		<button id="btnInsertPlvr">Inserir palavra</button>
+	</section>
+
+	<br><input type ="text" id="txtFinal"   placeholder="Texto censurado" size="50">
+	<br><button id="btnRedigir">REDIGIR</button>
+
+	<script>
+	
+		//var texto1	   = document.getElementById("addNovaPlvr");
+		//btnEnviar.addEventListener("click", copia); // Forma antiga
+		var btnRedigir = document.getElementById("btnRedigir");
+	
+		var palavrasNaoPermitidas = [];
+		var textoPosCensura;
+		//var textoPreCensura = "Nossa! Quanto psiquiatra, milho, barba e calopsita!";
+		//let t = textoPreCensura;
+		var novaPalavra;
+		var i = 0;
+		txtInicial.value = "";
+		addNovaPlvr.value = "";
+		txtFinal.value   = "";
+	
+		function redigePalavras (texto, palavraProibida) {
+			return texto.replaceAll(palavraProibida, '[REDIGIDO]');
+		}
+	
+		btnInsertPlvr.addEventListener("click", () => {
+			novaPalavra = document.querySelector("#addNovaPlvr");
+			palavrasNaoPermitidas.push(novaPalavra.value);
+			addNovaPlvr.value = "";
+		})
+
+		btnRedigir.addEventListener("click", () => {
+			let t = txtInicial.value;
+
+			for(i; i < palavrasNaoPermitidas.length; i++){
+				textoPosCensura = (redigePalavras(t, palavrasNaoPermitidas[i]));
+				t = textoPosCensura;
+			}
+	
+			txtFinal.value = textoPosCensura;
+		});
+	
+		console.log(textoPosCensura);
+	
+	
+	</script>
+</body>
+<footer>
+	<p>Matheus Heck - 2022</p>
+</footer>
+</html>
